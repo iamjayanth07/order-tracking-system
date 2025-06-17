@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -9,15 +9,81 @@ import {
   Box,
   Typography,
   Avatar,
+  TextField,
+  MenuItem,
+  Grid,
 } from "@mui/material";
 
 const OrderTable = ({ orders }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [priceFilter, setPriceFilter] = useState("");
+
+  // Filter logic
+  const filteredOrders = orders.filter((order) => {
+    const matchesSearch =
+      order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      order.productName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      order.vehicleNumber.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesStatus = statusFilter ? order.status === statusFilter : true;
+
+    const matchesPrice =
+      priceFilter === "gt5000"
+        ? order.price > 5000
+        : priceFilter === "lt5000"
+        ? order.price < 5000
+        : true;
+
+    return matchesSearch && matchesStatus && matchesPrice;
+  });
+
   return (
     <Box sx={{ padding: 3 }}>
       <Typography variant="h5" gutterBottom>
         Orders
       </Typography>
 
+      {/* ✅ Filter Controls */}
+      <Grid container spacing={2} sx={{ mb: 2 }}>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            fullWidth
+            label="Search Orders"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            fullWidth
+            select
+            label="Filter by Status"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <MenuItem value="">All</MenuItem>
+            <MenuItem value="Pending">Pending</MenuItem>
+            <MenuItem value="Delivered">Delivered</MenuItem>
+            <MenuItem value="Cancelled">Cancelled</MenuItem>
+          </TextField>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            fullWidth
+            select
+            label="Filter by Price"
+            value={priceFilter}
+            onChange={(e) => setPriceFilter(e.target.value)}
+          >
+            <MenuItem value="">All</MenuItem>
+            <MenuItem value="lt5000">Less than ₹5000</MenuItem>
+            <MenuItem value="gt5000">More than ₹5000</MenuItem>
+          </TextField>
+        </Grid>
+      </Grid>
+
+      {/* 🧾 Orders Table */}
       <Paper elevation={3}>
         <Table>
           <TableHead>
@@ -33,8 +99,8 @@ const OrderTable = ({ orders }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {orders.length > 0 ? (
-              orders.map((order) => (
+            {filteredOrders.length > 0 ? (
+              filteredOrders.map((order) => (
                 <TableRow key={order.id}>
                   <TableCell>
                     <Avatar

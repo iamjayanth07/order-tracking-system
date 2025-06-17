@@ -11,8 +11,8 @@ const LoginForm = () => {
   const validateInput = () => {
     const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_]{3,}$/;
 
- // min 4 characters, only letters, numbers, underscore
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{6,}$/; // min 6 characters
+ 
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{6,}$/; 
 
     if (!usernameRegex.test(username)) {
       setError("Username must be at least 4 characters (letters/numbers/_)");
