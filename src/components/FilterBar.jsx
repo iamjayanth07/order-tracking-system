@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import {
   Box,
@@ -8,7 +6,11 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Stack,
+  Button,
 } from "@mui/material";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 const FilterBar = ({
   searchQuery,
@@ -18,45 +20,100 @@ const FilterBar = ({
   priceFilter,
   setPriceFilter,
 }) => {
+  const handleReset = () => {
+    setSearchQuery("");
+    setStatusFilter("");
+    setPriceFilter("");
+  };
+
   return (
-    <Box className="filter-bar">
-     
-      <TextField
-        label="Search (Order ID / Product Name)"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        sx={{ minWidth: 250 }}
-      />
-
-      
-      <FormControl sx={{ minWidth: 150 }}>
-        <InputLabel>Status</InputLabel>
-        <Select
-          value={statusFilter}
-          label="Status"
-          onChange={(e) => setStatusFilter(e.target.value)}
+    <Box
+      sx={{
+        backgroundColor: "#f9f9f9",
+        padding: 2,
+        mb: 3,
+        borderRadius: 2,
+        boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+      }}
+    >
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        spacing={2}
+        alignItems="stretch"
+        justifyContent="space-between"
+        flexWrap="wrap"
+      >
+        {/* Filter Title */}
+        <Stack
+          direction="row"
+          spacing={1}
+          alignItems="center"
+          sx={{ width: { xs: "100%", sm: "auto" } }}
         >
-          <MenuItem value="">All</MenuItem>
-          <MenuItem value="Pending">Pending</MenuItem>
-          <MenuItem value="Shipped">Shipped</MenuItem>
-          <MenuItem value="Delivered">Delivered</MenuItem>
-          <MenuItem value="Cancelled">Cancelled</MenuItem>
-        </Select>
-      </FormControl>
+          <FilterAltIcon color="primary" />
+          <Box sx={{ fontWeight: 600, fontSize: "16px" }}>Filter Orders</Box>
+        </Stack>
 
-      
-      <FormControl sx={{ minWidth: 180 }}>
-        <InputLabel>Price Filter</InputLabel>
-        <Select
-          value={priceFilter}
-          label="Price Filter"
-          onChange={(e) => setPriceFilter(e.target.value)}
-        >
-          <MenuItem value="">All</MenuItem>
-          <MenuItem value="gt5000">Greater than ₹5000</MenuItem>
-          <MenuItem value="lt5000">Less than ₹5000</MenuItem>
-        </Select>
-      </FormControl>
+        {/* Search Field */}
+        <Box sx={{ flex: 1, minWidth: { xs: "100%", sm: "200px", md: "250px" } }}>
+          <TextField
+            label="Search (Order ID / Product Name)"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            variant="outlined"
+            size="small"
+            fullWidth
+          />
+        </Box>
+
+        {/* Status Filter */}
+        <Box sx={{ flex: 1, minWidth: { xs: "100%", sm: "150px" } }}>
+          <FormControl size="small" fullWidth>
+            <InputLabel>Status</InputLabel>
+            <Select
+              value={statusFilter}
+              label="Status"
+              onChange={(e) => setStatusFilter(e.target.value)}
+            >
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="Pending">Pending</MenuItem>
+              <MenuItem value="Shipped">Shipped</MenuItem>
+              <MenuItem value="Delivered">Delivered</MenuItem>
+              <MenuItem value="Cancelled">Cancelled</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+
+        {/* Price Filter */}
+        <Box sx={{ flex: 1, minWidth: { xs: "100%", sm: "180px" } }}>
+          <FormControl size="small" fullWidth>
+            <InputLabel>Price Filter</InputLabel>
+            <Select
+              value={priceFilter}
+              label="Price Filter"
+              onChange={(e) => setPriceFilter(e.target.value)}
+            >
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="gt5000">Greater than ₹5000</MenuItem>
+              <MenuItem value="lt5000">Less than ₹5000</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+
+        {/* Reset Button */}
+        <Box sx={{ minWidth: { xs: "100%", sm: "auto" } }}>
+          <Button
+            onClick={handleReset}
+            startIcon={<RestartAltIcon />}
+            variant="outlined"
+            color="secondary"
+            size="small"
+            fullWidth={true}
+          >
+            Reset
+          </Button>
+        </Box>
+      </Stack>
     </Box>
   );
 };

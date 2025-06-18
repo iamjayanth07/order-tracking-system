@@ -92,10 +92,10 @@ const OrderTable = ({ orders }) => {
         sx={{
           borderRadius: 3,
           boxShadow: "0px 3px 10px rgba(0,0,0,0.08)",
-          overflowX: "auto", // enable horizontal scroll
+          overflowX: "auto",
         }}
       >
-        <Box sx={{ minWidth: "800px" }}> {/* Adjust min width as needed */}
+        <Box sx={{ minWidth: "800px" }}>
           <Table>
             <TableHead>
               <TableRow sx={{ backgroundColor: "#f5f5f5" }}>
@@ -110,7 +110,13 @@ const OrderTable = ({ orders }) => {
                 ].map((heading) => (
                   <TableCell
                     key={heading}
-                    sx={{ fontWeight: "bold", textTransform: "uppercase", fontSize: "13px" }}
+                    align="left"
+                    sx={{
+                      fontWeight: "bold",
+                      textTransform: "uppercase",
+                      fontSize: "13px",
+                      width: heading === "Price" ? "120px" : "auto",
+                    }}
                   >
                     {heading}
                   </TableCell>
@@ -149,8 +155,10 @@ const OrderTable = ({ orders }) => {
                       </Typography>
                     </TableCell>
                     <TableCell>{order.category}</TableCell>
-                    <TableCell align="right">₹{order.price.toLocaleString()}</TableCell>
-                    <TableCell>
+                    <TableCell sx={{ width: "120px" }}>
+                      ₹{order.price.toLocaleString()}
+                    </TableCell>
+                    <TableCell sx={{ minWidth: "100px" }}>
                       <Chip
                         label={order.status}
                         size="small"

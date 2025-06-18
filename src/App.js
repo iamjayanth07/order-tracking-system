@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import LoginPage from "./pages/LoginPage";
 import OrdersPage from "./pages/OrdersPage"; // Placeholder
 import { CssBaseline } from "@mui/material";
+import './App.css';
+
 
 function App() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
