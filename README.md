@@ -13,7 +13,7 @@ Frontend web application to manage and filter logistics orders. Built using **Re
 
 - 🔐 **Login Page** (Regex-based validation for email and password)
 - 📋 **Orders Dashboard**
-  - Search (Order ID, Product Name, Vehicle Number)
+  - Search (Order ID, Product Name)
   - Status filter (Pending, Shipped, Delivered, Cancelled)
   - Price filter (Less than ₹5000 / Greater than ₹5000)
   - Clean, paginated table layout
