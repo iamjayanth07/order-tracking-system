@@ -29,6 +29,9 @@ Frontend web application to manage and filter logistics orders. Built using **Re
 ### 🔐 Login Page
 - Email: must be in valid format (e.g. `user@example.com`)
 - Password: Minimum 6 characters, with at least 1 letter and 1 number
+- Test Credentials:
+- Email: virat@gmail.com (meets validation rule)
+- Password: test123 (meets validation rule)
 
 > On successful login, you are redirected to `/orders`.
 
@@ -62,15 +65,46 @@ Frontend web application to manage and filter logistics orders. Built using **Re
 
 ---
 
-## 🔧 Setup Instructions
+## 🔧 Installation & Setup
 
-### 1. Clone the repo
+To set up and run the project locally, follow these steps:
+
+
+1. Clone the repository
+
 ```bash
 git clone https://github.com/yourusername/unloadin-orders.git
 cd unloadin-orders
-
-### 2. Install dependencies
+```
+2. Install dependencies
 ```bash
-npm install
+  npm install
+```
+3. Start the development server
+```bash
+  npm start
+```
+
+---
+
+## 🗂️ Project Structure
+
+```bash
+  unloadin-orders/
+├── public/                     # Static assets & index.html
+├── src/
+│   ├── components/             # Reusable UI components
+│   │   ├── FilterBar.jsx       # Search & filter controls
+│   │   ├── LoginForm.jsx       # Login form with validation
+│   │   └── OrderTable.jsx      # Table + pagination
+│   ├── pages/                  # Route‑driven pages
+│   │   ├── LoginPage.jsx       # /login
+│   │   └── OrdersPage.jsx      # /orders
+│   ├── firebase.js             # Firebase initialization
+│   ├── App.js                  # Main router & layout
+│   ├── App.css                 # Global styles
+│   └── utils/                  # Utility functions (e.g. mock data)
+└── README.md
+```
 
 
