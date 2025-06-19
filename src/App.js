@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-import OrdersPage from "./pages/OrdersPage"; // Placeholder
+import OrdersPage from "./pages/OrdersPage"; 
 import { CssBaseline } from "@mui/material";
 import './App.css';
 
