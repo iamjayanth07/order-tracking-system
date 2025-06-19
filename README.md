@@ -68,3 +68,9 @@ Frontend web application to manage and filter logistics orders. Built using **Re
 ```bash
 git clone https://github.com/yourusername/unloadin-orders.git
 cd unloadin-orders
+
+### 2. Install dependencies
+```bash
+npm install
+
+
