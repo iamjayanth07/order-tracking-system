@@ -9,7 +9,7 @@ Frontend web application to manage and filter logistics orders. Built using **Re
 
 ## 📦 Features
 
-### ✅ Segment 1 – Frontend Development
+### Frontend Development
 
 - 🔐 **Login Page** (Regex-based validation for email and password)
 - 📋 **Orders Dashboard**
