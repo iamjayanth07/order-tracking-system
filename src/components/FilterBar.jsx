@@ -8,8 +8,8 @@ import {
   MenuItem,
   Stack,
   Button,
+  Typography,
 } from "@mui/material";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 const FilterBar = ({
@@ -36,24 +36,33 @@ const FilterBar = ({
         boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
       }}
     >
+      {/* Section Header */}
+      <Typography
+        sx={{
+          fontSize: "18px",
+          fontWeight: "bold",
+          color: "primary.main",
+          mb: 2,
+          textTransform: "uppercase",
+          letterSpacing: 0.5,
+        }}
+      >
+        Filter Orders
+      </Typography>
+
       <Stack
-        direction={{ xs: "column", sm: "row" }}
+        direction={{ xs: "column", md: "row" }}
         spacing={2}
         alignItems="stretch"
         justifyContent="space-between"
-        flexWrap="wrap"
+        sx={{
+          flexWrap: "wrap",
+          [`@media (max-width:800px)`]: {
+            flexDirection: "column",
+            gap: 2,
+          },
+        }}
       >
-        {/* Filter Title */}
-        <Stack
-          direction="row"
-          spacing={1}
-          alignItems="center"
-          sx={{ width: { xs: "100%", sm: "auto" } }}
-        >
-          <FilterAltIcon color="primary" />
-          <Box sx={{ fontWeight: 600, fontSize: "16px" }}>Filter Orders</Box>
-        </Stack>
-
         {/* Search Field */}
         <Box sx={{ flex: 1, minWidth: { xs: "100%", sm: "200px", md: "250px" } }}>
           <TextField
@@ -108,7 +117,7 @@ const FilterBar = ({
             variant="outlined"
             color="secondary"
             size="small"
-            fullWidth={true}
+            fullWidth
           >
             Reset
           </Button>

@@ -8,20 +8,16 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Validates username (min 4 chars) OR email
-  const isValidUsernameOrEmail = (input) =>
-    /^(?:[a-zA-Z0-9_]{4,}|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(input);
-
-  // Password: min 6 chars, at least 1 letter + 1 number
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{6,}$/;
 
   const validateInput = () => {
-    if (!isValidUsernameOrEmail(usernameOrEmail)) {
-      setError("Enter a valid username (min 4 chars) or email address");
+    if (!emailRegex.test(usernameOrEmail)) {
+      setError("Enter a valid email address");
       return false;
     }
     if (!passwordRegex.test(password)) {
-      setError("Password must be at least 6 characters long and include atleast one letters and one numbers");
+      setError("Password must be at least 6 characters long and include at least one letter and one number");
       return false;
     }
     setError("");
@@ -42,8 +38,8 @@ const LoginForm = () => {
       <form onSubmit={handleLogin}>
         <TextField
           fullWidth
-          label="Username or Email"
-          placeholder="example@domain.com"
+          label="Email"
+          placeholder="example@gmail.com"
           margin="normal"
           value={usernameOrEmail}
           onChange={(e) => setUsernameOrEmail(e.target.value)}

@@ -68,16 +68,26 @@ const OrderTable = ({ orders }) => {
 
   return (
     <Box sx={{ padding: 3 }}>
-      <Typography
-        variant="h5"
-        sx={{
-          fontWeight: 700,
-          textAlign: "center",
-          mb: 3,
-        }}
-      >
-        📦 Orders Dashboard
-      </Typography>
+      {/* Updated Dashboard Header */}
+      <Box sx={{ textAlign: "center", mb: 4 }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "bold",
+            color: "primary.main",
+            letterSpacing: 1,
+            textTransform: "uppercase",
+          }}
+        >
+          Orders Dashboard
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          sx={{ color: "text.secondary", mt: 0.5 }}
+        >
+          Track and manage all your logistics orders here
+        </Typography>
+      </Box>
 
       <FilterBar
         searchQuery={searchQuery}
