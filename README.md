@@ -73,7 +73,7 @@ To set up and run the project locally, follow these steps:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/unloadin-orders.git
+git clone https://github.com/iamjayanth07/order-tracking-system.git
 cd unloadin-orders
 ```
 2. Install dependencies
